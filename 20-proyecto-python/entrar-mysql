@@ -1,0 +1,1 @@
+mysql -h 192.168.250.8 -P 3306 -u root --password=BUka7Zz7oZ

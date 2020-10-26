@@ -1,0 +1,1 @@
+mysql -h 192.168.250.8 -P 3064 -u root --password=9ayhDsBdyZ --database=master_python < basesdedatos.sql > output.tab
