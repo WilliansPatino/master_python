@@ -71,6 +71,7 @@ class Acciones:
 
         elif accion == 'eliminar':
             print("Vamos a eliminar nota")
+            haz.borrar(usuario)
             self.proximasAcciones(usuario)
         
         elif accion == 'salir':
