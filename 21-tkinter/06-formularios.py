@@ -60,6 +60,8 @@ campo_grande.config(
 	pady=15
 	)
 
+
+
 # Botones
 Label(ventana).grid(row=4, column=1)
 
