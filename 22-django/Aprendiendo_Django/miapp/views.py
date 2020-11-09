@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 
 # Create your views here.
 
@@ -17,6 +17,15 @@ layout = """
         </li>
         <li>
             <a href="/pagina">Página de Prueba</a>
+        </li>
+		  <li>
+            <a href="/contacto">Contacto</a>
+        </li>
+		<li>
+            <a href="/visitar_otra_pagina/">Redirigir a Página desde mi Web con parámetro opcional (ej: /1 o /4)</a>
+        </li>
+		<li>
+            <a href="/visitar_google">Redirigir a Google desde mi Web</a>
         </li>
     </ul>
 """
@@ -39,16 +48,52 @@ def index(request):
 		
 	html += "</ul>"
 	
-	return HttpResponse(layout+html)
+	#return HttpResponse(layout+html)
+	return render(request, 'index.html' )
+
+def visitar_otra_pagina(request, redirigir=0):
+
+	if redirigir == 1:
+		return redirect('/inicio/')
+
+	elif redirigir == 4:
+		# redirigir a contacto
+		return redirect('contacto', nombre="Willians", apellido="Patiño")
+
+	else:
+
+		return HttpResponse(layout+"""
+			<h2>Redirige Pagina de mi Web</h2>
+			""")
+
+
+def visitar_google(request):
+	# return HttpResponse(layout+"""
+	# 	<h2>Redirige a Google desde mi Web</h2>
+	# 	""")
+	return redirect('https://google.com')
+
 
 def hola_mundo(request):
-	return HttpResponse(layout+"""
-		<h2>Hola Mundo, desde Django</h2>
-		<h3>Soy Willians, aprendiendo Python</h3>
-		""")
+	# return HttpResponse(layout+"""
+	# 	<h2>Hola Mundo, desde Django</h2>
+	# 	<h3>Soy Willians, aprendiendo Python</h3>
+	# 	""")
+	return render(request, 'hola_mundo.html')
 		
 def pagina(request):
-	return HttpResponse(layout+"""
-		<h2>Pagina de mi Web</h2>
-		<h3>Creado por WP</h3>
-		""")
+	# return HttpResponse(layout+"""
+	# 	<h2>Pagina de mi Web</h2>
+	# 	<h3>Creado por WP</h3>
+	# 	""")
+	return render(request, 'pagina.html')
+		
+def contacto(request, nombre="", apellido=""):
+
+	html = ""
+
+	if nombre or apellido:
+		html = f"<em> {nombre} {apellido} </em>"
+
+	return HttpResponse(layout+
+		f"<h2>Contactar a</h2>"+html)
