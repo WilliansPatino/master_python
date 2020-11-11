@@ -1,0 +1,17 @@
+{%  extends 'layout.html' %}
+
+{% block title %}
+Contacto
+{% endblock %}
+
+
+ {% include 'bienvenido.html' %}  
+
+{% block content %}
+<h2 class="title">Contacto</h2>
+<h3>Escriba su comentario</h3>
+
+<!-- herencia de contenido-->
+{{ block.super }}
+
+{% endblock %}

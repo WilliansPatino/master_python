@@ -10,6 +10,16 @@ body {
     
 }
 
+p, h2, h3, ul {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+ul, ol {
+    margin-left: 20px; 
+ margin-bottom: 10px;
+}
+
 /*  cabecera */
 header {
     width: 1200px;
@@ -47,13 +57,13 @@ header {
 
 nav {
     width: 1250px;
-    height: 40px;
+    height: 50px;
     background-color: #1e2b38;
     border: 1px solid #333333;
     margin: 0 auto;
     box-shadow: 0px 22px 22px gray;
     font-size: 15px;
-    margin-bottom: 20px;
+    /* margin-bottom: 25px; */
 }
 
 nav ul {
@@ -82,3 +92,101 @@ nav ul li a:hover {
     color: white;
     transition: all 300ms ;
 }
+
+/*  barra 3D debajo del menu de navegacion */
+.barra {
+    width: 1250px;
+    margin: 0 auto;
+    /* margin-bottom: 140px; */
+}
+.esquina-izquierda {
+    display: block;
+    border-left: 20px solid transparent;
+    border-top: 12px solid  #1e2b38;
+    float: left;
+}
+.esquina-derecha {
+    display: block;
+    border-right: 20px solid transparent;
+    border-top: 12px solid  #1e2b38;
+    float: right;
+}
+.relleno-barra {
+    display: block;
+    background: #1e2b38;
+    width: 1210px;
+    height: 12px;
+    float: left;
+}
+/* Decorator arriba del header */
+.header-decorator {
+    width: 1240px;
+    margin: 0 auto;
+    height: 12px;
+}
+.header-izq {
+    display: block;
+    border-left: 20px solid transparent;
+    border-top:  12px solid  #2ba977;
+    float: left;
+}
+.header-der {
+    display: block;
+    border-right: 20px solid transparent;
+    border-top: 12px solid  #2ba977;
+    float: right;
+}
+.header-cen {
+    display: block;
+    background: #2ba977;
+    width: 1200px;
+    height: 12px;
+    float: left;
+}
+
+/* contenido central */
+#content {
+    width: 1200px;
+    min-height: 640px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    margin-top: 50px;
+    /* box-shadow: 0px 22px 22px gray; */
+}
+
+.box {
+    width: 95%;
+    min-height: 640px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 0px 8px 8px gray;
+}
+.title {
+    color: #6d6d6d;
+    letter-spacing: 1px;
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+footer {
+    width: 1200px;
+    height: 100px;
+    background-color: #1b1e1f;
+    border: 1px solid #333;
+    color: #d1d4d6;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    box-shadow: 0px 0px 20px gray;    
+    margin: 0 auto;
+}
+/* 
+#footer-container {
+    width: 1250px;
+    height: 50px;
+    background-color: #1e2b38;
+    margin: 0 auto;
+} */

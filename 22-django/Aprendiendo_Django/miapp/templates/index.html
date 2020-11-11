@@ -1,12 +1,82 @@
 {%  extends 'layout.html' %}
 
 {% block title %}
-Inicio 
+  Título_inicio_estático
+  | {{title}}
 {% endblock %}
 
 {% block content %}
-<h2>Pagina de inicio</h2>
-<h3></h3>
+
+    <!-- comentario HTML-->
+    {% comment 'comentario django' %}
+        Comentario de backend para quien programas 
+
+    {% endcomment %}
+
+    <!--  INCLUDES -->
+
+    {% include 'bienvenido.html' %}      
+
+    <h2 class="title">{{title}}</h2>
+
+    <!-- Pase de argumentos -->
+    <h3>Pase de argumento</h3>
+    <p>Variable: {{mi_variable}}
+    </p>
+
+    <!-- condicionales -->
+    <h3>Pase de argumento con validación</h3>
+    {% if nombre %}
+        <p>Nombre: {{nombre}}
+        </p>
+    {% else %}
+        <strong>Nombre no existe</strong>
+    {% endif %}
+
+    <h3>Experiencia con estos lenguajes (Bucles/lista)</h3>
+    <ul>
+    {% for lenguaje in lenguajes %}
+        <li>  {{forloop.counter}} ) {{lenguaje}}   </li>
+        {{forloop.first}} / {{forloop.last}} 
+       
+       <!-- otras funcionalidades 
+       -->
+       
+
+    {% endfor %}
+    </ul>
+    <h3>Experiencia con lenguajes compilados)</h3>
+    <ul>
+    {% for leng in compilados %}
+        <li> {{leng}}  </li>
+
+        <!-- condicional / funcionalidades extras -->
+        {% empty %}
+            <p> No hay lenguajes que mostrar</p>
+
+    {% endfor %}
+    </ul>
+
+
+    {% include 'showyears.html' with saludo="Hola,  esta lista se genera desde un include" %}
+
+    <!-- para enviar solo esta variable 
+    {% include 'showyears.html' with saludo="Hola" only %}
+
+       agrega: only
+
+       -->
+
+
+    {% comment %} <p>Años hasta el 2050</p>
+    <ul> 
+        {% for year in years %}
+
+            {% if year|divisibleby:2   %}
+                <li> {{ year }} </li>
+                {%  endif %}
+        {%  endfor %}
+    </ul> {% endcomment %}
 
 {% endblock %}
 

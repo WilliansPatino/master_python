@@ -5,10 +5,14 @@ Hola Mundo
 {% endblock %}
 
 {% block content %}
-<h2>Hola Mundo, desde Django</h2>
+<h2 class="title">Hola Mundo, desde Django</h2>
 <h3>Soy Willians, aprendiendo Python</h3>
 
+<hr>
 <!-- herencia de contenido-->
 {{ block.super }}
+
+
+{% include 'include_fecha.html' %}
 
 {% endblock %}

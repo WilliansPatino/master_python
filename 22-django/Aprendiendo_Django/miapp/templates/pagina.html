@@ -5,7 +5,83 @@ Pagina de mi Web
 {% endblock %}
 
 {% block content %}
-<h2>Pagina de mi Web</h2>
+<h2 class="title">Pagina de mi Web</h2>
+
 <h3>Creado por WP</h3>
+
+<hr>
+
+<h2> Filtros </h2>
+<ol>
+    <li> <h2>cut</h2> </li>
+    <p>Ej: Remover espacios a la palabra "Soy programador"</p>
+    <h3>    { { Soy Programador"|cut:" " } } </h3>
+    <ul>
+        <li>Resultado: {{ "Remover espacios"|cut:" "}}</li>
+    </ul>
+    <li> <h2>default </h2> </li>
+    <p>Ej: Mostrar un resultado si variable es vacia"</p>
+    <h3>    { { variable|default:" No hay nada " } } </h3>
+    <ul>
+        <li>Resultado: {{variable|default:"No hay nada"}}</li>
+    </ul>
+
+    <li> <h2>El primer elemento de una lista</h2> </li>
+    <ul>
+    <li>Resultado: {{lista|first}}</li>
+    </ul>
+
+    <li> <h2>El ùltimo elemento de una lista</h2> </li>
+    <ul>
+    <li>Resultado: {{lista|last}}</li>
+    </ul>
+
+    <li> <h2>Mostrar los elementos de manera legible</h2> </li>
+    <ul>
+    <li>Resultado: {{lista|join:', '}}</li>
+    </ul>
+
+    <li> <h2>Mostrar el tamaño de la lista/ No. de elementos</h2> </li>
+    <ul>
+    <li>Resultado: {{lista|length}}</li>
+    </ul>
+
+     <li> <h2>Mostrar el tamaño de una cadena, ej: gatos</h2> </li>
+    <ul>
+    <li>Resultado: {{'gatos'|length}}</li>
+    </ul>
+
+     <li> <h2>Mostrar una cadena en minusculas, ej: GaTos</h2> </li>
+    <ul>
+    <li>Resultado: {{'GaTos'|lower}}</li>
+    </ul>
+
+    <li> <h2>Mostrar una cadena en mayusculas, ej: gatos</h2> </li>
+    <ul>
+    <li>Resultado: {{'gatos'|upper}}</li>
+    </ul>
+
+      <li> <h2>Mostrar un elemento aleatorio de la lista</h2> </li>
+    <ul>
+    <li>Resultado: {{lista|random}}</li>
+    </ul>
+
+    <li> <h2>Cita del día</h2> </li>
+    <ul>
+    <li>Resultado: {{citas|random}}</li>
+    </ul>
+
+     <li> <h2>Remover las etiquetas. Ej: < h1 >texto< /h1> < strong >Pruebas< /strong > </h2> </li>
+    <ul>
+    <li>Resultado: {{"<h1>texto</h1><strong>Pruebas</strong>"|striptags}}</li>
+    </ul>
+
+     <li> <h2>Contar el No. de palabras Ej: < h1 >texto< /h1> < strong >Pruebas< /strong > </h2> </li>
+    <ul>
+    <li>Resultado: {{ "<h1>texto</h1> <strong>Pruebas</strong>"|wordcount|striptags }}</li>
+    </ul>
+
+
+</ul>
 
 {% endblock %}

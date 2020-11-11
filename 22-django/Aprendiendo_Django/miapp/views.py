@@ -32,11 +32,12 @@ layout = """
 
 def index(request):
 	
-	html = """
+	"""
+	html = 
 		<h2>Inicio</h2>
 		<p>Años hasta el 2020</p>
 		<ul>
-	"""
+	
 		
 	year = 2020
 	while year <= 2050:
@@ -47,9 +48,26 @@ def index(request):
 		year += 1
 		
 	html += "</ul>"
+	"""
+	year = 2021
+	rango = range(year, 2051)
 	
+	nombre = 'Willians Patiño'
+	lenguajes = ['Perl', 'Bash','Python', 'JavaScript']
+	#compilados = ['Java', 'Go', 'C++']
+	compilados = []
+
 	#return HttpResponse(layout+html)
-	return render(request, 'index.html' )
+	return render(request, 'index.html',
+		{
+			'title':'Título-inicio-dinámico',
+			'mi_variable': 'Soy el contenido',
+			'nombre':nombre,
+			'lenguajes': lenguajes,
+			'compilados': compilados,
+			'years':rango
+		}
+	)
 
 def visitar_otra_pagina(request, redirigir=0):
 
@@ -86,14 +104,24 @@ def pagina(request):
 	# 	<h2>Pagina de mi Web</h2>
 	# 	<h3>Creado por WP</h3>
 	# 	""")
-	return render(request, 'pagina.html')
+	return render(request, 'pagina.html',
+		{'variable':'',
+		'lista':['gatos','perros','caballos','aves','peces'],
+		'citas':['Einstein','Gandhi','Mandela']
+		}
+	)
 		
 def contacto(request, nombre="", apellido=""):
 
 	html = ""
+	return render(request, 'contacto.html',
+		{
+			'nombre':nombre
+		}
+	 )
 
 	if nombre or apellido:
 		html = f"<em> {nombre} {apellido} </em>"
 
-	return HttpResponse(layout+
-		f"<h2>Contactar a</h2>"+html)
+	# return HttpResponse(layout+
+	# 	f"<h2>Contactar a</h2>"+html)
