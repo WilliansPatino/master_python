@@ -1,5 +1,9 @@
 {%  extends 'layout.html' %}
 
+<!-- Filtro personalizado -->
+
+{% load filters %}
+
 {% block title %}
 Pagina de mi Web
 {% endblock %}
@@ -7,9 +11,11 @@ Pagina de mi Web
 {% block content %}
 <h2 class="title">Pagina de mi Web</h2>
 
+
+
 <h3>Creado por WP</h3>
 
-<hr>
+{{"Willians Patiño"|saludo|safe}}
 
 <h2> Filtros </h2>
 <ol>

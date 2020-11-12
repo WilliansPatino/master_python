@@ -1,4 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
+""" import mi modelos """
+from miapp.models import Article
+
 
 # Create your views here.
 
@@ -92,6 +95,7 @@ def visitar_google(request):
 	return redirect('https://google.com')
 
 
+
 def hola_mundo(request):
 	# return HttpResponse(layout+"""
 	# 	<h2>Hola Mundo, desde Django</h2>
@@ -125,3 +129,83 @@ def contacto(request, nombre="", apellido=""):
 
 	# return HttpResponse(layout+
 	# 	f"<h2>Contactar a</h2>"+html)
+
+
+""" a partir de aqui para cntinuar con los modelos/tablas """
+
+def crear_articulo(request, title='Sin indicar', content='Sin indicar', public=False):
+	
+	# crear el registro
+	articulo = Article(
+		title = title,
+		content = content,
+		public = public
+	)
+
+	articulo.save()
+
+	reg = f"<h2>Articulo creado: {articulo.title} - {articulo.content} </h2>"
+	return HttpResponse(reg)
+
+def articulo(request, id='1'):
+
+	try:
+		articulo = Article.objects.get(id=id)
+
+		""" otros ejemplos de busquedas 
+			articulo = Article.objects.get(pk=5)
+			articulo = Article.objects.get(title='Depp')
+		"""
+		reg = f"<h2>Articulo consultado: </h2> "
+		reg += f"<strong>ID:  {articulo.id} <br/> "
+		reg += f"<strong>Titulo:  {articulo.title} <br/> "
+		reg += f"Contenido: {articulo.content} </strong>"
+	except:
+		reg = f"<h2>Articulo no encontrado </h2> "
+	
+
+	return HttpResponse(reg)
+
+def actualizar_articulo(request, id):
+
+		articulo = Article.objects.get(pk=id)
+
+		articulo.title = 'Actualizado'
+		articulo.content = ' contenido modificado'
+		articulo.public = False
+
+		articulo.save()
+
+		reg = f"<h2>Articulo actualizado: </h2> "
+		reg += f"<strong>ID:  {articulo.id} <br/> "
+		reg += f"<strong>Titulo:  {articulo.title} <br/> "
+		reg += f"Contenido: {articulo.content} </strong>"
+
+		return HttpResponse(reg)
+
+def articulos(request):
+
+	# equivalente a un SELECT * FROM ...
+	articulos = Article.objects.all()[2:5]
+	
+	""" puede agregar algo semejante a LIMIT
+
+		1)Listar hasta 5 registros
+
+			articulos = Article.objects.all()[:5]
+
+		2) listar desde el record 3 hasta el 5
+
+			articulos = Article.objects.all()[2:5]
+
+
+	Sortear la salida:
+		Article.objects.order_by('-id')
+		Article.objects.order_by('title')
+
+	"""
+
+
+	return render(request, 'articulos.html', {
+		'articulos': articulos
+	})

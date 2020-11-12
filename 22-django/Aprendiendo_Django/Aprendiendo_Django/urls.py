@@ -33,5 +33,11 @@ urlpatterns = [
     path('visitar_otra_pagina/', miapp.views.visitar_otra_pagina, name="visitar_otra_pagina"),
     path('visitar_otra_pagina/<int:redirigir>', miapp.views.visitar_otra_pagina, name="visitar_otra_pagina"),
     path('visitar_google/', 
-    miapp.views.visitar_google, name="visitar_google")
+    miapp.views.visitar_google, name="visitar_google"),
+    path('creararticulo/', miapp.views.crear_articulo, name='creararticulo'),
+    path('creararticulo/<str:title>/<str:content>/<str:public>', miapp.views.crear_articulo, name='creararticulo'),
+    path('articulo', miapp.views.articulo, name='articulo'),
+    path('articulo/<str:id>', miapp.views.articulo, name='articulo'),
+    path('actualiza/<int:id>', miapp.views.actualizar_articulo),
+    path('articulos', miapp.views.articulos),
 ]
