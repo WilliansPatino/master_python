@@ -154,7 +154,8 @@ nav ul li a:hover {
     /* box-shadow: 0px 22px 22px gray; */
 }
 
-.box {
+.box{ 
+    /* background-color: indigo; */
     width: 95%;
     min-height: 640px;
     padding: 20px;
@@ -170,6 +171,62 @@ nav ul li a:hover {
     margin-bottom: 10px;
     margin-top: 5px;
 }
+
+.box form {
+    width: 40%;
+
+}
+
+.box form input,
+.box form label {
+    display: block;
+    padding: 5px;
+    padding-left: 0px;
+    
+}
+
+.box form select {
+    width: 100px;
+    padding: 5px;
+}
+
+.box form input[type='text'] {
+    width: 100%;
+    margin-bottom:10px ;
+    background-color: #def1f1
+}
+
+.box form textarea {
+    width: 100%;
+    height: 150px;
+    margin-bottom:10px;
+    background-color: #def1f1
+}
+
+.box form input[type="submit"],
+.box form input[type="button"],
+.box form button {
+    padding: 10px;
+    margin-top: 20px;
+    background: #0f8a53;
+    color: white;
+    width: 30%;
+    text-transform: uppercase;
+    border-radius: 20px;
+    transition: 300ms all;
+    border: none;
+
+}
+.box form input[type="submit"]:hover {
+
+    cursor: pointer;
+    /* background:#2ba977; */
+    /* color: black; */
+    background: #046b3f;
+
+}
+
+
 
 footer {
     width: 1200px;

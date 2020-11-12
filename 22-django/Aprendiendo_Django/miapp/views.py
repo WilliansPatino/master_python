@@ -2,6 +2,9 @@ from django.shortcuts import render, HttpResponse, redirect
 """ import mi modelos """
 from miapp.models import Article
 
+""" requerida para consultas ORM con OR """
+from django.db.models import Q
+
 
 # Create your views here.
 
@@ -147,6 +150,50 @@ def crear_articulo(request, title='Sin indicar', content='Sin indicar', public=F
 	reg = f"<h2>Articulo creado: {articulo.title} - {articulo.content} </h2>"
 	return HttpResponse(reg)
 
+#-- Bloque:  crear articulos con ayuda de un formulario 
+
+def save_article(request):
+	# las variables se enviaran desde el formulario por la url
+	
+	try:
+		# agregar el registro con GET
+		# if request.method  == 'GET':
+		if request.method  == 'POST':
+
+			# title = request.GET['title']
+			title = request.POST['title']
+
+			if len(title) <=5:
+				return HttpResponse("Tìtulo muy corto")
+
+			""" content = request.GET['content']
+			public = request.GET['public'] """
+			content = request.POST['content']
+			public = request.POST['public']
+
+			articulo = Article(
+				title = title,
+				content = content,
+				public = public
+			)
+			articulo.save()
+			reg = f"<h2>Artículo agregado: {articulo.title} - {articulo.content} </h2>"
+			return HttpResponse(reg)
+	except:
+		
+		reg = f"<h2>No se pude agregar el articulo </h2>"
+		return HttpResponse(reg)
+	finally:
+		# Redirige y mantiene actualizada cuando se hagan cambios
+		return redirect('articulos')
+
+def create_article(request):
+	
+	return render(request, 'create_article.html')
+	
+
+#--- Fin del bloque
+
 def articulo(request, id='1'):
 
 	try:
@@ -186,9 +233,37 @@ def actualizar_articulo(request, id):
 def articulos(request):
 
 	# equivalente a un SELECT * FROM ...
-	articulos = Article.objects.all()[2:5]
+	articulos = Article.objects.all()
+
+	# Busqueda especifica por campos 
+	articulos = Article.objects.filter(title__contains='blog')
+
+	# exclusion // listar articulo que contenga 'blog' y sean privados.
+	articulos = Article.objects.filter(title__contains='blog').exclude(
+			public=False
+		)
 	
-	""" puede agregar algo semejante a LIMIT
+	# Consulta SQL pura
+	sql = "SELECT * FROM miapp_article WHERE title LIKE '%blog%' "
+	sql += "AND public=1"
+	articulos = Article.objects.raw(sql)
+	# Emplear  la consulta SQL pura reemplaza el ORM de Django
+
+	# Otro clase de consulta del ORM de Django, utilizando el operando OR
+	#  se requiere: from django.db.models import Q
+	articulos = Article.objects.filter(
+		Q(title__contains='blog') |
+		Q(title__contains='Depp') |
+		Q(public__contains=True)
+	)
+
+	# consulta final
+	sql = "SELECT * FROM miapp_article ORDER BY id DESC; "
+	# sql += "AND public=1"
+	articulos = Article.objects.raw(sql)
+
+	""" Algunas notas para lookup 
+		puede agregar algo semejante a LIMIT
 
 		1)Listar hasta 5 registros
 
@@ -199,9 +274,34 @@ def articulos(request):
 			articulos = Article.objects.all()[2:5]
 
 
-	Sortear la salida:
-		Article.objects.order_by('-id')
-		Article.objects.order_by('title')
+		3) Sortear la salida:
+			Article.objects.order_by('-id')
+			Article.objects.order_by('title')
+
+		4) Equivalente a LIKE  en SELECT ....
+
+			articulos = Article.objects.filter(title__contains='STRING')
+
+		5) Parecido a ILIKE  en SELECT ....
+
+			articulos = Article.objects.filter(title__iexact='STRING')
+		
+		6) Buscar los ID a partir del 3ro.
+
+			... = Article.objects.filter(id__gt=3)
+
+		7) Buscar los mayores/igual a 3 o menores de 3.
+
+			... = Article.objects.filter(id__gte=3)
+			... = Article.objects.filter(id__lt=3)
+
+		8) Buscar los mayores/igual a 3 y cuyo titulo contenga la palabra 'Articulo'
+
+			... = Article.objects.filter(id__gte=3, title__contains='Articulo')
+
+		9) listar los articulos ordenado descendente por id
+		
+			... =  Article.objects.all().order_by('-id')
 
 	"""
 
@@ -209,3 +309,11 @@ def articulos(request):
 	return render(request, 'articulos.html', {
 		'articulos': articulos
 	})
+
+def borrar_articulo(request, id):
+
+	articulo = Article.objects.get(pk=id)
+	articulo.delete()
+
+	# Redirige y mantiene actualizada cuando se hagan cambios
+	return redirect('articulos')

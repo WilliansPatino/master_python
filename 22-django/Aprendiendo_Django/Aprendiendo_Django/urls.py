@@ -39,5 +39,16 @@ urlpatterns = [
     path('articulo', miapp.views.articulo, name='articulo'),
     path('articulo/<str:id>', miapp.views.articulo, name='articulo'),
     path('actualiza/<int:id>', miapp.views.actualizar_articulo),
-    path('articulos', miapp.views.articulos),
+    path('articulos', miapp.views.articulos, name='articulos'),
+    path('borrararticulo/<int:id>', miapp.views.borrar_articulo, name='borrar'),
+    path('createarticle', miapp.views.create_article, name='create'),
+    path('savearticle', miapp.views.save_article, name='save'),
 ]
+
+"""
+# Es importante!  Agregar en el path la parte 'name' para indicar la ruta y de ese modo
+   no perder la asociacion aunque se cambiase las opciones del   menu
+
+        path(....., menu="nombre")
+
+"""

@@ -1,0 +1,37 @@
+{%  extends 'layout.html' %}
+
+{% block title %}
+Formularios don Django
+{% endblock %}
+
+
+
+{% block content %}
+    <h2 class="title">Formularios con Django | Agregar artículos</h2>
+    <hr>
+    <!-- Envio por GET // no recomendado  -->
+    {% comment %} <form action="{% url 'save' %}" method="GET"> {% endcomment %}
+
+ 
+
+    <form action="{% url 'save' %}" method="POST">
+
+        <!-- REQUERIDO para envio por la url con POST -->
+        {% csrf_token %}
+
+        <label for="title">Título</label>
+        <input type="text" name="title" placeholder="Escriba el título">
+        
+
+        <label for="content">Contenido</label>
+        <textarea  name="content"></textarea>
+
+        <label for="public">Público</label>
+        <select name='public'>
+            <option value='1'>Sí</option>
+            <option value='0'>No</option>
+        </select>
+
+        <input type="submit" value="Guardar"></input>
+    </form>
+{% endblock %}
