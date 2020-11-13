@@ -1,0 +1,48 @@
+{%  extends 'layout.html' %}
+
+{% block title %}
+Formularios con clase en Django
+{% endblock %}
+
+{% block content %}
+    <h2 class="title">Formularios con Clases | Agregar artículos</h2>
+    <hr>
+    <!-- Envio por GET // no recomendado  -->
+    {% comment %} <form action="{% url 'save' %}" method="GET"> {% endcomment %}
+
+    <!-- mensajes flash aqui -->
+    {% if messages %}
+	    {% for message in messages %}
+		<div class="error_message">
+			{{message}}
+		</div>
+	    {% endfor%}
+    {% endif %}
+
+    {% if form.errors %}
+         <strong class="rojo">
+            Hay errores en el formulario
+        </strong>
+    {% endif %}
+
+    {{form.errors}}
+
+    <form action="" method="POST">
+
+        <!-- REQUERIDO para envio por la url con POST -->
+        {% csrf_token %}
+
+        <!-- formulario desde la Clase -->
+        {% comment %} {{ form }} {% endcomment %}
+
+        
+        <!-- mostrar form dentro de etiquetas <p> -->
+        {{ form.as_p }}
+
+        <!-- mostrar form dentro de etiqueta  <ul> -->
+        {% comment %} {{ form.as_ul }} {% endcomment %}
+        
+        
+        <input type="submit" value="Guardar"></input>
+    </form>
+{% endblock %}

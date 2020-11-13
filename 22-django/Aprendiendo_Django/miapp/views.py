@@ -5,6 +5,11 @@ from miapp.models import Article
 """ requerida para consultas ORM con OR """
 from django.db.models import Q
 
+""" Formularios con Clases """
+from miapp.forms import formArticle
+
+""" Sesiones/mensajes flash """
+from django.contrib import messages
 
 # Create your views here.
 
@@ -190,9 +195,59 @@ def save_article(request):
 def create_article(request):
 	
 	return render(request, 'create_article.html')
-	
 
 #--- Fin del bloque
+
+#--Bloque: Formularios con Clases
+def create_full_article(request):
+
+
+		# validacion del formulario
+	if request.method == 'POST':
+
+		
+			formulario = formArticle(request.POST)
+
+			if formulario.is_valid():
+				
+				data_form = formulario.cleaned_data
+				title = data_form.get('title')
+				content = data_form['content']
+				public = data_form['public']
+
+				# salvar el registro
+				articulo = Article(
+					title = title,
+					content = content,
+					public = public
+				)
+				articulo.save()
+
+				#  crear mensaje flash. mostrado solo una vez
+				messages.success(request, f'Artículo registrado: {articulo.title}',
+				)
+
+				# redirigir al listado
+				return redirect('articulos')
+
+			else:
+
+				#  crear mensaje flash. mostrado solo una vez
+				messages.error(request, f'Error de entrada en el formulario')
+
+				formulario = formArticle()
+				return render(request, 'create_full_article.html',{'form':formulario}) 
+	else:
+				""" genera el formulario vacio """
+				formulario = formArticle()
+
+				return render(request, 'create_full_article.html',
+				{
+				'form': formulario
+				}) 
+
+	
+#--FIn de bloque: Formularios....
 
 def articulo(request, id='1'):
 
@@ -315,5 +370,7 @@ def borrar_articulo(request, id):
 	articulo = Article.objects.get(pk=id)
 	articulo.delete()
 
+	#  crear mensaje flash. mostrado solo una vez
+	messages.success(request, f'Artículo eliminado ID:{id}  {articulo.title}')
 	# Redirige y mantiene actualizada cuando se hagan cambios
 	return redirect('articulos')

@@ -8,6 +8,16 @@ Listado de Artículos
 {% block content %}
 <h2 class="title">Articulos</h2>
 
+<!-- mensajes flash aqui -->
+{% if messages %}
+	{% for message in messages %}
+		<div class="success_message">
+			{{message}}
+		</div>
+	{% endfor%}
+{% endif %}
+
+<hr>
 <ul>
 {% for articulo in articulos %}
     <li>
@@ -31,7 +41,5 @@ Listado de Artículos
     </li>
 {% endfor %}
 </ul>
-
-
 
 {% endblock %}

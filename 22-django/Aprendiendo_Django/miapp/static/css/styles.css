@@ -81,8 +81,8 @@ nav ul li {
 
 nav ul li a {
     display: block;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
     color: #d1d4d6;
 }
 
@@ -239,6 +239,42 @@ footer {
     padding-bottom: 10px;
     box-shadow: 0px 0px 20px gray;    
     margin: 0 auto;
+}
+
+.titulo_form_article {
+    font-size: 18px;
+    border-radius: 3px;
+}
+
+#contenido_form {
+   font-style: italic;
+   font-family: 'Times New Roman', Times, serif;
+   font-size: 20px;
+}
+
+.rojo {
+    color: red;
+    box-shadow: 0px 0px 0px black;
+}
+.error_message {
+    padding: 12px;
+    background: #d30d0d;
+    text-align: center;
+    margin-bottom: 10px;
+    font-style: bold;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 20px;
+   color: white;
+}
+.success_message {
+    padding: 12px;
+    background: #0f8a53;
+    text-align: center;
+    margin-bottom: 10px;
+    font-style: bold;
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 20px;
+   color: white;
 }
 /* 
 #footer-container {
