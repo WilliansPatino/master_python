@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'miapp'
+    # 'miapp'
+    'miapp.apps.MiappConfig'
 ]
 
 MIDDLEWARE = [
@@ -104,7 +105,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ve'
 
 TIME_ZONE = 'UTC'
 
@@ -119,3 +121,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+""" Primer paso para trabajar y manipular imagenes en Python / Django Administration
+
+        o Agregar estas rutas, debajo de STATIC_URL, luego instalar: pip3 install Pillow
+
+    2do paso, ir a models.py ajustar en el campo imagen
+"""
+
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -313,7 +313,7 @@ def articulos(request):
 	)
 
 	# consulta final
-	sql = "SELECT * FROM miapp_article ORDER BY id DESC; "
+	sql = "SELECT * FROM miapp_article WHERE public=1 ORDER BY id DESC; "
 	# sql += "AND public=1"
 	articulos = Article.objects.raw(sql)
 

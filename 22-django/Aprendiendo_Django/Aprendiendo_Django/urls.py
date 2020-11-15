@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+"""  importar setting para manipular imagenes """
+from django.conf import settings
+
 # importar app con mis vistas
 #from miapp import views
 # otra manera de vincular 
@@ -47,9 +50,37 @@ urlpatterns = [
 ]
 
 """
-# Es importante!  Agregar en el path la parte 'name' para indicar la ruta y de ese modo
-   no perder la asociacion aunque se cambiase las opciones del   menu
+    o Es importante!  Agregar en el path la parte 'name' para indicar 
+    la ruta. De ese modo, no se pierde la asociacion aunque se cambiase
+    las opciones del   menu
 
         path(....., menu="nombre")
 
+
+    o Configuración para cargar imagenes
+
+        - importar los settings. Para acceder al directorio /media/
+            Si en esta en modo DEBUG = False,  no es necesario
+        
+        - Agregar la configuracion para cargar imagenes si DEBUG=True
+
+
 """
+#-- Aunque funcion estos ajustes aqui, no es lo recomendable. 
+# # AJustar el título del panel de administraciòn
+# title_panel = "Master en Python | Willians Patiño"
+# admin.site.site_header = title_panel
+# admin.site.site_title = title_panel
+# admin.site.index_title = "Panel de gestión"
+#
+# Lo recomendable: Agregar estos en admin.py
+
+
+# Ajustar 
+
+# o Configuración para cargar imagenes
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, 
+        document_root=settings.MEDIA_ROOT)
+

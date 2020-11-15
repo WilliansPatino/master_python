@@ -5,22 +5,63 @@ from django.db import models
 
 #/* aqui pequeñas clases */
 
-
-
 class Article(models.Model):
-    title = models.CharField(max_length=100)
-    content = models.TextField()
-    image = models.ImageField(default='null')
-    public = models.BooleanField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    title = models.CharField(max_length=100, verbose_name='Título')
+    content = models.TextField(verbose_name='Contenido')
+    image = models.ImageField(default='null', verbose_name='Imagén', 
+        upload_to='articles')
+    public = models.BooleanField(verbose_name='Publico/Privado')
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name='Creado')
+    updated_at = models.DateTimeField(auto_now=True, verbose_name='Editado')
+
+    #   De esta manera, cambio el nombre a los modelos  otros 
+    class Meta:
+        verbose_name = 'Artículo'
+        verbose_name_plural = 'Artículos'
+        # ordering = ['-id']
+        ordering = ['-created_at']
+
+    def __str__(self):
+        
+        if self.public:
+            msg = 'Publicado'
+        else:
+            msg = 'Privado'
+
+        return f'({self.id}) {self.title}  creado el {self.created_at} - [{msg}]'
+
 """
-image = models.ImageField() / ej. campo de imagen
- """
+    o Cambiar como se mostrará el campo
+    
+        ... models.CharField(..., verbose_name='nuevo-nombre')
+
+        image = models.ImageField() / ej. campo de imagen
+
+    o Cambiar el nombre del objeto en el panel (buscar como magic method)
+
+        def __str__(self):
+            return ...
+
+    o Para trabajar y manipular imagenes en Django Administration y Python
+
+        agregar en el campo imagen:
+
+            ... = models.ImageField(... , upload_to='articles')
+---
+
+   Si se desea indicar otra DB/Table 
+
+     class Meta:
+         db_table = "dbname"
+
+    Es necesario hacer la migraciones y SQL migrate
+---
 
 # auto_now_add=True  // Guarda automaticamente la fecha
 # DateTimeField // dato de fechas mas completo.
 # DateField()  // entrada de fecha manual
+"""
+
 
 class Category(models.Model):
     name = models.CharField(max_length=150)

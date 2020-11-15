@@ -15,9 +15,14 @@ p, h2, h3, ul {
     margin-bottom: 5px;
 }
 
-ul, ol {
+.box ul, .box ol {
     margin-left: 20px; 
- margin-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.clearfix {
+    clear: both;
+    float: none;
 }
 
 /*  cabecera */
@@ -42,15 +47,16 @@ header {
     display: block;
     width: 60px;
     float: left;
-    margin-top: 20px;
+    margin-top: 25px;
+    padding-right: 20px;
 }
 
 #logotipo h1 {
     display: block;
-    letter-spacing: 2px;
+    letter-spacing: .5px;
     font-weight: lighter;
-    float: left;
-    margin-top: 42px;
+    /* float: left; */
+    margin-top: 30px;
     margin-left: 20px;
     color:#2ba977;
 }
@@ -230,7 +236,7 @@ nav ul li a:hover {
 
 footer {
     width: 1200px;
-    height: 100px;
+    height: 50px;
     background-color: #1b1e1f;
     border: 1px solid #333;
     color: #d1d4d6;
@@ -275,6 +281,87 @@ footer {
    font-family: Arial, Helvetica, sans-serif;
    font-size: 20px;
    color: white;
+}
+
+/* article item */
+.article-item {
+    margin-top: 10px;
+    margin-bottom:15px;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    clear: both;
+}
+.article-item .image img {
+    /* width: 155px; */
+    height: 250px;
+    float: left;
+    padding: 10px;
+    padding-bottom: 0;
+    /* background-color: hotpink; */
+    /* margin-right: 10px; */
+    border-top-left-radius: 1em;
+    /* border-bottom-right-radius: 2em; */
+}
+.article-item .data {
+    float: left;
+    padding: 10px;
+    padding-top: 0px;
+    display: block;
+    /* background-color: indigo; */
+}
+.article-item .data .article-content {
+    text-align: justify;
+    /* background-color: green; */
+    display: block;
+    padding:0 10px 0 10px;
+    font-size: 18px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande';
+     /* 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+}
+.article-item h2 {
+    color: #333;
+    display: block;
+    font-size: 25px;
+    margin-bottom: 10px;
+    
+}
+.article-item span {
+    font-size: 15px;
+    color: gray;
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+} 
+.btn {
+    padding: 10px;
+    background: rgb(255, 55, 55);
+    color: white;
+    border: 1px solid gray;
+    display: block;
+    margin-top: 20px;
+    width: 100px;
+    text-align: center;
+    border-radius: 20px;
+
+}
+.btn-small {
+    display: block;
+    float: left;
+    margin-top: 20px;
+    padding: 3px 12px;
+    background: rgb(241, 85, 85);
+    font-weight: 400;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #fff;
+    border-radius: 20px;
+    width: 60px;
+    text-align: center;
+    position: relative;
+}
+.btn-small:hover {
+    background: rgb(206, 10, 10);
 }
 /* 
 #footer-container {
