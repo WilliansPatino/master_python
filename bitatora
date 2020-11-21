@@ -1,0 +1,33 @@
+*--- Master en Python 
+
+*--  21 .11.2020
+
+	Primeros pasos con Flask
+
+		o 	Instalar Flask; primera instancia web
+
+	Routing y vistas en Flask
+
+		o 	Crear rutas
+
+		o 	Pase de Parámetros a las rutas
+
+		o 	Parámetros opcionales
+
+		o 	Redirecciones a otra páginas
+
+		o 	Plantillas separadas
+
+	Plantillas y templates 
+
+		o 	Layouts; herencia y bloques
+
+		o 	Estilos: CSS
+
+		o 	Context processors; fechas en Flask
+
+		o 	Condiciones en las templates
+
+		o 	Ciclos For en la templates
+
+		o 	Includes en templates

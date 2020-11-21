@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        | Aprendiendo Flask
+        {% endblock %}
+    </title>
+  
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style-original.css') }}">
+</head>
+<body>
+
+    {# 
+    <!--    Cabecera de la pagina -->
+    <div class="header-decorator">
+    <span class="header-izq"></span>
+    <span class="header-cen"></span>
+    <span class="header-der"></span>
+    </div>
+    #}
+    
+    <header>
+        <div id="logotipo">
+            <!--    logo django -->
+            <img src="{{ url_for('static', filename='img/Flask_logo.svg.png') }}" alt="">
+            <h1>Proyecto con Flask </h1>
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="{{ url_for('index')}}">Inicio</a>
+            </li>
+            <li>
+                <a href="{{ url_for('contacto')}}">Contacto</a>
+            </li>
+        
+            <li>
+                <a href="{{ url_for('lenguajes')}}">Lenguajes</a>
+            </li>
+            <li>
+                <a href="{{ url_for('otra_pagina')}}">ir a otra pag</a>
+            </li>
+        </ul>
+    </nav>
+
+    {# 
+    <div class="barra">
+        <span class="esquina-izquierda"></span>
+        <span class="relleno-barra"></span>
+        <span class="esquina-derecha"></span>
+    </div>
+    #}
+    
+
+    <section id="content">
+        <div class="box">
+       
+            {% block content %}
+          
+            {% endblock %}
+        </div>
+    </section>
+
+    <div id="footer-container">
+        <footer>
+            Master en Python | Willians Patiño | &copy; {{ fecha.month }}.{{ fecha.year }}
+
+        </footer>
+    </div>
+</body>
+</html>
