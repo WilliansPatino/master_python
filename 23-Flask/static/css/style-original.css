@@ -430,15 +430,19 @@ footer {
 .btn {
     padding: 10px;
     background: rgb(255, 55, 55);
-    color: white;
+    color: white !important;
     border: 1px solid gray;
     display: block;
     margin-top: 20px;
-    width: 100px;
+    width: 100px;s
     text-align: center;
     border-radius: 20px;
 
 }
+.btn-warning {
+    background: #ee6e18e7;
+}
+
 .btn-small {
     display: block;
     float: left;
@@ -455,6 +459,7 @@ footer {
     text-align: center;
     position: relative;
 }
+
 .btn-small:hover {
     background: rgb(206, 10, 10);
 }

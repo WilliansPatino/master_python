@@ -1,0 +1,30 @@
+{% extends 'layout-original.html' %}
+
+
+{% block title %}
+    {{coche.2}}
+{% endblock %}
+
+{% block content %}
+
+   <h1> {{coche.1}} </h1>
+        
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message alert-success">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+      <div class="article-content">	
+                    {{coche.2}} | {{coche.3}} | {{coche.4}} | {{coche.5}}
+                
+                <!-- 
+                <a href="" class="btn">Eliminar</a>
+                <a href="" class="btn  btn-warning">Editar</a>
+                -->
+        </div>
+{% endblock %}

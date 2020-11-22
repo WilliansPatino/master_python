@@ -6,6 +6,17 @@
 
 {% block content %}
     <h1> Inicio </h1>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message alert-success">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
     <hr>
     <p>
     {{dato1}}
@@ -15,6 +26,7 @@
     </p>
    
     {% include 'includes/edad.html' %}
+    <h3>Listado de personas</h3>
     {% include 'includes/personas.html' %}
 
 

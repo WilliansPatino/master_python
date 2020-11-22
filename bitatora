@@ -31,3 +31,27 @@
 		o 	Ciclos For en la templates
 
 		o 	Includes en templates
+
+	Desarrollo Web con Flask
+
+	
+	o 	Crear la bases de datos y la tabla 'coches'
+
+	o 	Instalar paquetes de conectividad Flask - Mysql/MariaDB
+
+	o 	Formularios
+
+	o 	Guardar los registros en la BD.
+
+	o 	Mensajes flash
+
+	o 	Búsqueda de registros
+
+	o 	Eliminar registro
+
+	o 	Editar registros
+
+	o 	Actualizar el registro en la BD.
+
+
+
